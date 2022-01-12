@@ -21,11 +21,12 @@ class Collection{
     if(this.list.filter(item => item.desc === data.desc).length > 0){
       return
     }
-
     this.list.push(data);
-    this.display(data)
-    this.remove()
-    this.changeContent()
+    this.display(data);
+    this.arrange();
+    this.remove();
+    this.edit();
+    console.log(JSON.stringify(this.list));
   }
   
   display(data){
@@ -36,38 +37,42 @@ class Collection{
     <div class="task-left">
     <input type="checkbox" name="${data.desc}" id="${data.desc}">
     <p class="task-desc" contenteditable>${data.desc}</p></div>
-    <box-icon data-value="${data.index}" class="box-icon rmvBtn" name='dots-vertical-rounded'></box-icon>`;
+    <box-icon class="box-icon rmvBtn" name='dots-vertical-rounded'></box-icon>`;
     listWraper.appendChild(actualTask);
     }
   }
 
-  remove(){
-    const rmvBtns = document.querySelectorAll('.rmvBtn');
-    rmvBtns[rmvBtns.length - 1].addEventListener('click', (e) => {
-      console.log(e.target)
-    this.removeTask(e.target);
-    listWraper.removeChild(e.target.parentNode);
-    })
-  }
-
-  removeTask(data){
-    const toRemove = parseInt(data.getAttribute('data-value'));
-    this.list = this.list.filter(item => item.index !== toRemove);
-    let counter = 0;
-    for(let i = 0; i < this.list.length; i++){
-      data.setAttribute('data-value', i);
-      this.list[i].index = counter;
-      counter++;
+  arrange(){
+     const rmvBtns = document.querySelectorAll('.rmvBtn');
+     let counter = 0;
+     for(let i = 0 ; i < rmvBtns.length; i++){
+       this.list[i].index = i;
+       rmvBtns[i].setAttribute('data-value', i)
+     }
     }
-  }
 
-  changeContent(){
-    const editables = document.querySelectorAll('.task-desc');
-    editables[editables.length -1].addEventListener('input', (e) => {
-      console.log(e.target.parentNode);
-    })
-  }
+    remove(){
+      const rmvBtns = document.querySelectorAll('.rmvBtn');
+      rmvBtns[rmvBtns.length - 1].addEventListener('click', (e) => {
+        this.removeTask(e.target);
+        listWraper.removeChild(e.target.parentNode)
+        this.arrange();
+      })
+    }
 
+    removeTask(node){
+        const removeIndex  = parseInt(node.getAttribute('data-value'));
+        this.list = this.list.filter(item => removeIndex !== item.index);
+    }
+
+    edit(){
+      const editable = document.querySelectorAll('.task-desc');
+      editable[editable.length - 1].addEventListener('input', (e) => {
+        const index = e.target.parentNode.nextSibling.nextSibling.getAttribute('data-value');
+        this.list[index].desc = e.target.textContent;
+        console.log(JSON.stringify(this.list))
+      })
+    }
 }
 
 const coll = new Collection;
@@ -75,7 +80,6 @@ const coll = new Collection;
 window.addEventListener('keydown', (e) => {
   if(e.keyCode === 13 && input.value !== ''){
     coll.add(new task(coll.list.length,input.value))
-    console.log(coll.list)
     input.value = '';
   }
 })
