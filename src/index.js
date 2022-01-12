@@ -1,5 +1,5 @@
 import './style.css';
-// import 'boxicons';
+import 'boxicons';
 
 const tasks = [
   {
