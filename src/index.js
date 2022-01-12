@@ -29,10 +29,6 @@ for (let i = 0; i < tasks.length; i += 1) {
     <div class="task-left">
     <input type="checkbox" name="${tasks[i].description}" id="${tasks[i].description}">
     <p>${tasks[i].description}</p></div>
-
-                          `;
-
-  // <box-icon class="box-icon" name='dots-vertical-rounded'></box-icon>
-
+    <box-icon class="box-icon" name='dots-vertical-rounded'></box-icon>`;
   listWraper.appendChild(actualTask);
 }
