@@ -1,5 +1,5 @@
 import './style.css';
-import 'boxicons';
+// import 'boxicons';
 
 const tasks = [
   {
@@ -30,7 +30,9 @@ for (let i = 0; i < tasks.length; i += 1) {
     <input type="checkbox" name="${tasks[i].description}" id="${tasks[i].description}">
     <p>${tasks[i].description}</p></div>
 
-                        <box-icon class="box-icon" name='dots-vertical-rounded'></box-icon>
                           `;
+
+  // <box-icon class="box-icon" name='dots-vertical-rounded'></box-icon>
+
   listWraper.appendChild(actualTask);
 }
