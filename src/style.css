@@ -101,6 +101,9 @@ body {
 
 .task-desc {
   outline: none;
+  width: 250px;
+  padding: 10px;
+  background-color: rgb(240, 234, 234);
 }
 
 .displaynt {
