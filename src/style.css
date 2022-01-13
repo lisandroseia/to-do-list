@@ -79,7 +79,7 @@ body {
 }
 
 .task > .box-icon:hover {
-  cursor: grabbing;
+  cursor: pointer;
 }
 
 .task > p {
@@ -97,4 +97,12 @@ body {
 .list-btn:hover {
   cursor: pointer;
   font-size: 14px;
+}
+
+.task-desc{
+  outline: none;
+}
+
+.displaynt{
+  display: none;
 }
