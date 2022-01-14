@@ -65,6 +65,8 @@ body {
   align-items: center;
   border-top: 1px solid #bebdbb;
   position: relative;
+  background-color: rgb(240, 234, 234);
+  border-radius: 5px ;
 }
 
 .task-left {
@@ -103,7 +105,6 @@ body {
   outline: none;
   width: 250px;
   padding: 10px;
-  background-color: rgb(240, 234, 234);
 }
 
 .displaynt {
