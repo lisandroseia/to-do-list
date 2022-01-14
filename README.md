@@ -2,11 +2,11 @@
 
 # To-do list
 
-> In this project i made only the scheleton for the To-do list
+> In this project i made a scheleton and most of the functionalities for the to-do list.
 
 ![screenshot](./app_screenshot.png)
 
-Right now, the project has no features working
+With  this project you can track all of your daily activities, adding, removing, and editing it.
 
 ## Built With
 

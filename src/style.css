@@ -65,6 +65,8 @@ body {
   align-items: center;
   border-top: 1px solid #bebdbb;
   position: relative;
+  background-color: rgb(240, 234, 234);
+  border-radius: 5px;
 }
 
 .task-left {
@@ -79,7 +81,7 @@ body {
 }
 
 .task > .box-icon:hover {
-  cursor: grabbing;
+  cursor: pointer;
 }
 
 .task > p {
@@ -97,4 +99,14 @@ body {
 .list-btn:hover {
   cursor: pointer;
   font-size: 14px;
+}
+
+.task-desc {
+  outline: none;
+  width: 250px;
+  padding: 10px;
+}
+
+.displaynt {
+  display: none;
 }

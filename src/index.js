@@ -1,34 +1,21 @@
 import './style.css';
 import 'boxicons';
+import Task from './task.js';
+import Collection from './collection.js';
 
-const tasks = [
-  {
-    description: 'set webpack',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'display items',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'request review',
-    completed: false,
-    index: 2,
-  },
-];
+const input = document.querySelector('.input-task');
+const coll = new Collection();
 
-const listWraper = document.querySelector('.li-wraper');
-
-for (let i = 0; i < tasks.length; i += 1) {
-  const actualTask = document.createElement('li');
-  actualTask.className = 'task';
-
-  actualTask.innerHTML = `
-    <div class="task-left">
-    <input type="checkbox" name="${tasks[i].description}" id="${tasks[i].description}">
-    <p>${tasks[i].description}</p></div>
-    <box-icon class="box-icon" name='dots-vertical-rounded'></box-icon>`;
-  listWraper.appendChild(actualTask);
+if (localStorage.getItem('tasksList')) {
+  const previousTasks = JSON.parse(localStorage.getItem('tasksList')).tasksList;
+  for (let i = 0; i < previousTasks.length; i += 1) {
+    coll.add(new Task(previousTasks[i].index, previousTasks[i].desc, previousTasks[i].completed));
+  }
 }
+
+window.addEventListener('keydown', (e) => {
+  if (e.keyCode === 13 && input.value !== '') {
+    coll.add(new Task(coll.list.length, input.value, false));
+    input.value = '';
+  }
+});
