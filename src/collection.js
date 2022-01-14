@@ -103,7 +103,7 @@ export default class Collection {
 
   complete() {
     const checker = document.querySelectorAll('.check');
-    checker[checker.length - 1].addEventListener('click', (e) => {
+    checker[checker.length - 1].addEventListener('change', (e) => {
       e.target.parentNode.children[1].classList.toggle('checked');
       const index = e.target.parentNode.parentNode.children[1].getAttribute('data-value');
       this.list[index].completed = !this.list[index].completed;
