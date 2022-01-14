@@ -3,6 +3,8 @@ import 'boxicons';
 import Task from './task.js';
 import Collection from './collection.js';
 
+import clear from './clear.js';
+
 const input = document.querySelector('.input-task');
 const coll = new Collection();
 
@@ -18,4 +20,11 @@ window.addEventListener('keydown', (e) => {
     coll.add(new Task(coll.list.length, input.value, false));
     input.value = '';
   }
+});
+
+const clearBtn = document.querySelector('.list-btn');
+
+clearBtn.addEventListener('click', () => {
+  clear(coll);
+  coll.populateStorage();
 });
