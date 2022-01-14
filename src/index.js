@@ -3,6 +3,8 @@ import 'boxicons';
 import Task from './task.js';
 import Collection from './collection.js';
 
+import clear from './clear.js';
+
 const input = document.querySelector('.input-task');
 const coll = new Collection();
 
@@ -20,25 +22,9 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-const listWraper = document.querySelector('.li-wraper');
-
 const clearBtn = document.querySelector('.list-btn');
 
 clearBtn.addEventListener('click', () => {
-  const indexes = [];
-  coll.list.forEach(item => {
-    if(item.completed){
-      indexes.push(item.index)
-    }
-  })
-  for(let i = indexes.length -1 ; i >= 0; i -= 1){
-    if(listWraper.children[indexes[i]].children[1]){
-      listWraper.children[indexes[i]].children[1].click();
-    }
-  }
+  clear(coll);
   coll.populateStorage();
-})
-
-const refresh = document.querySelector('.refresh').addEventListener('click', () => {
-  coll.clear
-})
+});
