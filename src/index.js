@@ -39,4 +39,6 @@ clearBtn.addEventListener('click', () => {
   coll.populateStorage();
 })
 
-console.log(coll)
+const refresh = document.querySelector('.refresh').addEventListener('click', () => {
+  coll.clear
+})
