@@ -14,6 +14,7 @@ export default class Collection {
     this.arrange();
     this.remove();
     this.edit();
+    this.complete()
     this.populateStorage();
   }
 
@@ -21,17 +22,24 @@ export default class Collection {
     if (this) {
       const actualTask = document.createElement('li');
       actualTask.className = 'task';
-      actualTask.innerHTML = `
+      if(data.completed){
+        actualTask.innerHTML = `
       <div class="task-left">
-      <input type="checkbox" name="${data.desc}" id="${data.desc}">
-      <p class="task-desc" contenteditable>${data.desc}</p></div>
+      <input class="check" type="checkbox" name="${data.desc}" id="${data.desc}" CHECKED>
+      <p class="task-desc checked" contenteditable>${data.desc}</p></div>
       <box-icon class="box-icon rmvBtn trash displaynt" name='trash'></box-icon>
       <box-icon class="box.icon dots" name='dots-vertical-rounded' ></box-icon>`;
+      }else{
+        actualTask.innerHTML = `
+        <div class="task-left">
+        <input class="check" type="checkbox" name="${data.desc}" id="${data.desc}">
+        <p class="task-desc" contenteditable>${data.desc}</p></div>
+        <box-icon class="box-icon rmvBtn trash displaynt" name='trash'></box-icon>
+        <box-icon class="box.icon dots" name='dots-vertical-rounded' ></box-icon>`;
+      }
       listWraper.appendChild(actualTask);
     }
   }
-
-rmvBtn
 
 arrange() {
   const rmvBtns = document.querySelectorAll('.rmvBtn');
@@ -92,4 +100,16 @@ populateStorage() {
     }),
   );
 }
+
+complete(){
+  const checker = document.querySelectorAll('.check');
+  checker[checker.length -1].addEventListener('click', (e) => {
+    e.target.parentNode.children[1].classList.toggle('checked');
+    const index = e.target.parentNode.parentNode.children[1].getAttribute('data-value');
+      this.list[index].completed = !this.list[index].completed;
+    console.log(this.list[index].completed)
+    this.populateStorage();
+})
+}
+
 }
